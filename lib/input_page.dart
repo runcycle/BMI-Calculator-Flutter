@@ -82,7 +82,7 @@ class _InputPageState extends State<InputPage> {
                             textBaseline: TextBaseline.alphabetic,
                             children: <Widget>[
                               Text(
-                                '96',
+                                height.toString(),
                                 style: kNumberTextStyle,
                               ),
                               Text(
@@ -91,8 +91,22 @@ class _InputPageState extends State<InputPage> {
                               ),
                             ],
                           ),
-                          Slider(
-
+                          SliderTheme(
+                            data: SliderTheme.of(context).copyWith(
+                              thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
+                            ),
+                            child: Slider(
+                              value: height.toDouble(),
+                              min: 50.0,
+                              max: 96.0,
+                              activeColor: Color(0xFFEB1555),
+                              inactiveColor: Color(0xFF8D8E98),
+                              onChanged: (double newValue){
+                                setState(() {
+                                  height = newValue.round();
+                                });
+                              },
+                            ),
                           ),
                         ],
                       ),
@@ -121,7 +135,7 @@ class _InputPageState extends State<InputPage> {
             color: kBottomContainerColor,
             margin: EdgeInsets.only(top: 10.0),
             width: double.infinity,
-            height: kBottomContainerHeight
+            height: kBottomContainerHeight,
           ),
         ],
       ),
